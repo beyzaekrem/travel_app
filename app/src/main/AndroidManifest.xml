@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- 📷 Kamera ve Depolama için Gerekli İzinler -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+
+    <!-- 🌍 İnternet ve Konum Servisleri için Gerekli İzinler -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+    <!-- 📂 Android 10+ Galeri için Özel Erişim İzni -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.PICK"/>
+        </intent>
+    </queries>
+
+    <!-- 📷 Kamera Donanımı Gerekliliğini Belirt -->
+    <uses-feature android:name="android.hardware.camera"
+        android:required="false" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Travel_app"
+        tools:targetApi="31">
+
+
+        <!-- 📌 Aktiviteler -->
+        <activity android:name=".CityPhotoActivity"/>
+
+        <activity android:name=".ProfileEditActivity"
+            android:exported="false"/>
+
+        <activity android:name=".ProfileDetailActivity"
+            android:exported="true"/>
+
+        <activity android:name=".FavoritesActivity"
+            android:exported="true"/>
+
+        <activity android:name=".TravelMapActivity"
+            android:exported="true"/>
+
+        <activity android:name=".PhotosActivity"
+            android:exported="true"/>
+
+        <activity android:name=".ProfileActivity"
+            android:exported="true"/>
+
+        <activity android:name=".MapActivity"
+            android:exported="true"/>
+
+        <activity android:name=".SearchActivity"
+            android:exported="true"/>
+
+        <activity android:name=".CountryDetailActivity"
+            android:exported="false"/>
+
+        <!-- 🚀 Uygulama Açılış Aktivitesi -->
+        <activity android:name=".MainActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

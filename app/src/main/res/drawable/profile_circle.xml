@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+    <!-- Arka plan rengi -->
+    <solid android:color="#D9D9D9"/>  <!-- Açık Gri -->
+
+    <!-- Çerçeve eklemek istersen -->
+    <stroke
+        android:width="3dp"
+        android:color="#A3A3A3"/>  <!-- Çerçeve Rengi -->
+
+    <!-- Boyutları tanımlama (isteğe bağlı, genellikle ImageView tarafından ayarlanır) -->
+    <size
+        android:width="120dp"
+        android:height="120dp"/>
+
+</shape>

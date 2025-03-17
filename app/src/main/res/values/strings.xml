@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Travel_app</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="country_name">SearchActivity</string>
+    <string name="explore_text">Where would you like to explore in Europe?</string>
+    <string name="home_button">Home Button</string>
+    <string name="search_button">Search Button</string>
+    <string name="map_button">Map Button</string>
+    <string name="profile_button">Profile Button</string>
+    <string name="my_fav">My Favorites</string>
+    <string name="profile_detail">Profile Details</string>
+    <string name="profile">Profile Settings</string>
+    <string name="favorite">Favorites</string>
+    <string name="my_travel_map">My Travel Map</string>
+    <string name="profile_image_desc">Profile Picture</string>
+    <string name="homeBtn_desc">Home Button</string>
+    <string name="searchBtn_desc">Search Button</string>
+    <string name="mapBtn_desc">Map Button</string>
+    <string name="profileBtn_desc">Profile Button</string>
+    <string name="myMap_desc">My Map</string>
+    <string name="my_photos">My Photos</string>
+    <string name="myGallery_desc">My Gallery</string>
+    <string name="favorite_desc">Favorite</string>
+    <string name="profile_name">Beyza Ekrem</string>
+    <string name="profile_email">beyza.ekrem@gmail.com</string>
+    <string name="email_adress">E-mail Address</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="change_profil">Change Profil Picture</string>
+    <string name="city_button_description">City Selection Button</string>
+
+</resources>
