@@ -29,5 +29,7 @@
     <string name="last_name">Last Name</string>
     <string name="change_profil">Change Profil Picture</string>
     <string name="city_button_description">City Selection Button</string>
+    <string name="country_flag">Country Flag</string>
+    <string name="remove_from_favorites">Remove from favorites</string>
 
 </resources>

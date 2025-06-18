@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/favoriteItemLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="12dp"
+    android:gravity="center_vertical"
+    android:background="@color/white"
+    android:layout_margin="8dp">
+
+    <ImageView
+        android:id="@+id/countryFlag"
+        android:layout_width="48dp"
+        android:layout_height="32dp"
+        android:scaleType="fitXY"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/rounded_border"
+        android:contentDescription="@string/country_flag" />
+
+    <TextView
+        android:id="@+id/countryNameText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Italy"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black" />
+
+    <ImageButton
+        android:id="@+id/removeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_delete"
+        android:contentDescription="@string/remove_from_favorites"
+        app:tint="@android:color/darker_gray" />
+</LinearLayout>

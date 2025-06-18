@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_pink"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:padding="24dp">
+
+        <ImageView
+            android:id="@+id/logoImage"
+            android:layout_width="258dp"
+            android:layout_height="237dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="Rotam Logo"
+            android:src="@drawable/logo_rotam" />
+
+        <TextView
+            android:id="@+id/appTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="8dp"
+            android:layout_marginBottom="32dp"
+            android:fontFamily="@font/big_shoulders_stencil_text_extrabold"
+            android:textColor="@color/dark_purple"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:padding="12dp"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:layout_marginBottom="16dp" />
+
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:padding="12dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:layout_marginBottom="16dp" />
+
+        <Button
+            android:id="@+id/loginBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Log In"
+            android:textColor="@android:color/darker_gray"
+            android:backgroundTint="@color/mint_normal"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_button" />
+
+
+        <Button
+            android:id="@+id/goToRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Don't have an account? Sign up!"
+            android:textColor="@android:color/darker_gray"
+            android:backgroundTint="@color/mint_normal"
+            android:background="@drawable/rounded_button" />
+
+
+    </LinearLayout>
+</ScrollView>
+
+

@@ -14,7 +14,8 @@ public class CityPhotoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city_photo);
 
-        cityNameTextView = findViewById(R.id.cityNameTextView);
+        TextView cityNameTextView = findViewById(R.id.countryTitle);
+
 
         // Şehir adını al ve ekranda göster
         String cityName = getIntent().getStringExtra("city_name");

@@ -2,33 +2,27 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- 📷 Kamera ve Depolama için Gerekli İzinler -->
+    <!-- İzinler -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-    <!-- 🌍 İnternet ve Konum Servisleri için Gerekli İzinler -->
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-
-    <!-- 📂 Android 10+ Galeri için Özel Erişim İzni -->
     <queries>
         <intent>
-            <action android:name="android.intent.action.PICK"/>
+            <action android:name="android.intent.action.PICK" />
         </intent>
     </queries>
 
-    <!-- 📷 Kamera Donanımı Gerekliliğini Belirt -->
     <uses-feature android:name="android.hardware.camera"
         android:required="false" />
 
     <application
         android:allowBackup="true"
-        android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -36,43 +30,55 @@
         android:theme="@style/Theme.Travel_app"
         tools:targetApi="31">
 
+        <!-- Google Maps API -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAdU9f2ZDO5SN-G7HhWxyqrrTv0xaqxzoM" />
 
-        <!-- 📌 Aktiviteler -->
-        <activity android:name=".CityPhotoActivity"/>
-
-        <activity android:name=".ProfileEditActivity"
-            android:exported="false"/>
-
-        <activity android:name=".ProfileDetailActivity"
-            android:exported="true"/>
-
-        <activity android:name=".FavoritesActivity"
-            android:exported="true"/>
-
-        <activity android:name=".TravelMapActivity"
-            android:exported="true"/>
-
-        <activity android:name=".PhotosActivity"
-            android:exported="true"/>
-
-        <activity android:name=".ProfileActivity"
-            android:exported="true"/>
-
-        <activity android:name=".MapActivity"
-            android:exported="true"/>
-
-        <activity android:name=".SearchActivity"
-            android:exported="true"/>
-
-        <activity android:name=".CountryDetailActivity"
-            android:exported="false"/>
-
-        <!-- 🚀 Uygulama Açılış Aktivitesi -->
-        <activity android:name=".MainActivity" android:exported="true">
+        <!-- Login Giriş Başlangıç -->
+        <activity android:name=".LoginActivity" android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".RegisterActivity" android:exported="true" />
+        <activity android:name=".MainActivity" android:exported="true" />
+
+        <!-- Diğer Aktiviteler -->
+        <activity android:name=".CityPhotoActivity" android:exported="true" />
+        <activity android:name=".CountrySelectActivity" android:exported="true" />
+        <activity android:name=".ProfileEditActivity" android:exported="true" />
+        <activity android:name=".ProfileDetailActivity" android:exported="true" />
+        <activity android:name=".FavoritesActivity" android:exported="true" />
+        <activity android:name=".TravelMapActivity" android:exported="true" />
+        <activity android:name=".PhotosActivity" android:exported="true" />
+        <activity android:name=".ProfileActivity" android:exported="true" />
+        <activity android:name=".HotelsActivity" android:exported="true" />
+        <activity android:name=".FoodActivity" android:exported="true" />
+        <activity android:name=".PlacesActivity" android:exported="true" />
+        <activity android:name=".MapActivity" android:exported="true" />
+        <activity android:name=".SearchActivity" android:exported="true" />
+        <activity android:name=".AustriaActivity" android:exported="true" />
+        <activity android:name=".BelgiumActivity" android:exported="true" />
+        <activity android:name=".BulgariaActivity" android:exported="true" />
+        <activity android:name=".CroatiaActivity" android:exported="true" />
+        <activity android:name=".CzechiaActivity" android:exported="true" />
+        <activity android:name=".ItalyActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="mytravelapp"
+                    android:host="country"
+                    android:path="/Italy" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".FranceActivity" android:exported="true" />
+        <activity android:name=".CountryPhotoActivity" android:exported="true" />
+        <activity android:name=".PhotoPreviewActivity" android:exported="true" />
+
     </application>
 </manifest>

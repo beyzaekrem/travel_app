@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ProfileEditActivity extends AppCompatActivity {
@@ -31,10 +32,8 @@ public class ProfileEditActivity extends AppCompatActivity {
         avatarMale = findViewById(R.id.avatarMale);
         sharedPreferences = getSharedPreferences("UserProfile", Context.MODE_PRIVATE);
 
-        // **Kayıtlı kullanıcı bilgilerini ve avatarı yükle**
         loadUserData();
 
-        // **Avatar seçimi**
         avatarFemale.setOnClickListener(v -> {
             selectedAvatar = "female";
             updateAvatarSelection();
@@ -45,7 +44,6 @@ public class ProfileEditActivity extends AppCompatActivity {
             updateAvatarSelection();
         });
 
-        // **Kaydet butonuna tıklanınca bilgileri kontrol edip kaydet**
         btnSave.setOnClickListener(v -> validateAndSaveUserData());
     }
 
@@ -70,9 +68,8 @@ public class ProfileEditActivity extends AppCompatActivity {
     private void validateAndSaveUserData() {
         String firstName = editFirstName.getText().toString().trim();
         String lastName = editLastName.getText().toString().trim();
-        String email = editEmail.getText().toString().trim();
+        String newEmail = editEmail.getText().toString().trim();
 
-        // **Boş alanları kontrol et**
         if (firstName.isEmpty()) {
             editFirstName.setError("Ad boş bırakılamaz!");
             return;
@@ -81,18 +78,16 @@ public class ProfileEditActivity extends AppCompatActivity {
             editLastName.setError("Soyad boş bırakılamaz!");
             return;
         }
-        if (email.isEmpty()) {
+        if (newEmail.isEmpty()) {
             editEmail.setError("E-posta boş bırakılamaz!");
             return;
         }
 
-        // **E-posta formatını doğrula**
-        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(newEmail).matches()) {
             editEmail.setError("Lütfen geçerli bir e-posta adresi girin!");
             return;
         }
 
-        // **Türkçe karakter ve harf kısıtlamaları**
         if (!firstName.matches("[a-zA-ZğüşıöçĞÜŞİÖÇ ]+")) {
             editFirstName.setError("Ad yalnızca harf içerebilir!");
             return;
@@ -103,20 +98,33 @@ public class ProfileEditActivity extends AppCompatActivity {
             return;
         }
 
-        // **Bilgileri SharedPreferences'e kaydet**
+        // 📌 SQLite'ta e-posta güncelleme
+        String oldEmail = sharedPreferences.getString("email", "");
+        if (!oldEmail.equals(newEmail)) {
+            DatabaseHelper db = new DatabaseHelper(this);
+            boolean updated = db.updateUserEmail(oldEmail, newEmail);
+            if (!updated) {
+                Toast.makeText(this, "E-posta veritabanında güncellenemedi!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+
+        // ✅ SharedPreferences güncelle
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("firstName", firstName);
         editor.putString("lastName", lastName);
-        editor.putString("email", email);
+        editor.putString("email", newEmail);
         editor.putString("profileAvatar", selectedAvatar);
         editor.apply();
 
-        // **Başarı mesajı göster**
         Toast.makeText(this, "Bilgiler başarıyla güncellendi!", Toast.LENGTH_SHORT).show();
+    }
 
-        // **ProfileActivity'ye geri dön**
+    @Override
+    public void onBackPressed() {
         Intent intent = new Intent(ProfileEditActivity.this, ProfileActivity.class);
         startActivity(intent);
         finish();
+        super.onBackPressed();
     }
 }

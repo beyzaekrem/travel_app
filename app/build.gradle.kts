@@ -44,11 +44,33 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation ("androidx.recyclerview:recyclerview:1.2.1")
 
+    // Google Maps SDK for Android
+    implementation ("com.google.android.gms:play-services-maps:18.1.0")
+
+    // Google Places SDK for Android
+    implementation ("com.google.android.libraries.places:places:3.1.0")
+
+    // Retrofit (HTTP istekleri için)
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
 
     // **Google Play Servisleri**
     implementation("com.google.android.gms:play-services-basement:18.2.0")
 
     // **Gelişmiş Harita İşlevselliği için Maps SDK**
     implementation("com.google.maps.android:android-maps-utils:2.2.3")
+
+    implementation ("com.github.bumptech.glide:glide:4.15.1")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
+
+    implementation ("androidx.cardview:cardview:1.0.0")
+    implementation ("com.google.android.material:material:1.6.0")
+    implementation ("com.caverock:androidsvg:1.4")
+
+    implementation ("com.github.bumptech.glide:glide:4.15.1")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
+    implementation ("com.google.android.gms:play-services-maps:18.2.0")
+
 }

@@ -7,9 +7,10 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!-- Üst Menü -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/light_green"
         android:minHeight="?attr/actionBarSize"
@@ -18,6 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Arkaplan Görseli -->
     <ImageView
         android:id="@+id/backgroundImage"
         android:layout_width="match_parent"
@@ -27,23 +29,40 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Başlık -->
     <TextView
         android:id="@+id/textTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/big_shoulders_stencil_text_extrabold"
         android:paddingTop="100dp"
-        android:text="plan your travels,\ndiscover,\nkeep your memories."
+        android:text="Plan your travels,\nDiscover,\nKeep your memories."
         android:textAlignment="center"
         android:textColor="@color/dark_green"
-        android:textSize="34sp"
+        android:textSize="28sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Ülke Listesi -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:padding="8dp"
+        android:clipToPadding="false"
+        android:scrollbars="vertical"
+        app:layout_constraintTop_toBottomOf="@id/textTitle"
+        app:layout_constraintBottom_toTopOf="@id/bottomNav"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Alt Navigasyon -->
     <androidx.cardview.widget.CardView
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
@@ -51,7 +70,7 @@
         app:cardCornerRadius="30dp"
         android:layout_margin="16dp"
         app:cardElevation="8dp"
-        android:background="@color/green"
+        android:backgroundTint="@color/green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -63,8 +82,6 @@
             android:gravity="center">
 
             <!-- Ana Sayfa Butonu -->
-
-            <!-- Arama Butonu -->
             <ImageView
                 android:id="@+id/homeBtn"
                 android:layout_width="50dp"
@@ -72,7 +89,7 @@
                 android:padding="8dp"
                 android:src="@drawable/home" />
 
-            <!-- Harita Butonu -->
+            <!-- Arama Butonu -->
             <ImageView
                 android:id="@+id/searchBtn"
                 android:layout_width="50dp"
@@ -80,12 +97,13 @@
                 android:padding="8dp"
                 android:src="@drawable/search" />
 
+            <!-- Harita Butonu -->
             <ImageView
                 android:id="@+id/mapBtn"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/map"
-                android:padding="8dp"/>
+                android:padding="8dp" />
 
             <!-- Profil Butonu -->
             <ImageView
@@ -98,4 +116,5 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

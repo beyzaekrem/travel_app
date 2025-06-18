@@ -9,4 +9,5 @@ public class ProfileDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_detail); // XML dosyanı tanımla
     }
+
 }

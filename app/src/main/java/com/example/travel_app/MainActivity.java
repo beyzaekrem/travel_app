@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initializeViews() {
         bottomNav = findViewById(R.id.bottomNav);
-        bottomNav.setCardBackgroundColor(getResources().getColor(R.color.green)); // Açık yeşil arkaplan
+        bottomNav.setCardBackgroundColor(getResources().getColor(R.color.green));
 
         homeBtn = findViewById(R.id.homeBtn);
         searchBtn = findViewById(R.id.searchBtn);
@@ -60,9 +60,9 @@ public class MainActivity extends AppCompatActivity {
     private void openActivity(Class<?> destination, ImageView activeButton) {
         if (!this.getClass().equals(destination)) {
             Intent intent = new Intent(MainActivity.this, destination);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // Önceki aktiviteyi yığından kaldır
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
-            finish(); // Önceki aktiviteyi kapat
+            finish();
         }
         setActiveButton(activeButton);
     }

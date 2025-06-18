@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".TravelMapActivity">
+    android:layout_height="match_parent">
 
-    <TextView
+    <!-- SVG Harita Görüntüleme -->
+    <com.caverock.androidsvg.SVGImageView
+        android:id="@+id/svgImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Ziyaret Edilen Yerleri Renklendir Butonu -->
+
+    <Button
+        android:id="@+id/colorBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Travel Map Page"
-        android:textSize="24sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:text="Color the visited places"
+        android:textSize="18sp"
+        android:backgroundTint="@color/light_purple"
+        android:textColor="@android:color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:padding="12dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

@@ -1,76 +1,67 @@
 package com.example.travel_app;
 
-import com.example.travel_app.MapActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.Arrays;
 import java.util.List;
 
 public class PhotosActivity extends AppCompatActivity {
-    private RecyclerView recyclerViewCities;
-    private ImageView homeBtn, searchBtn, mapBtn, profileBtn;
+
+    private RecyclerView recyclerView;
+    private CountryAdapter adapter;
+    private List<Country> countryList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photos);
 
-        recyclerViewCities = findViewById(R.id.recyclerViewCities);
-        homeBtn = findViewById(R.id.homeBtn);
-        searchBtn = findViewById(R.id.searchBtn);
-        mapBtn = findViewById(R.id.mapBtn);
-        profileBtn = findViewById(R.id.profileBtn);
+        recyclerView = findViewById(R.id.recyclerViewCountries);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
 
-        // **Şehir Listesi (Tüm ülkeleri kapsıyor)**
-        List<String> cityList = Arrays.asList(
-                "Austria", "Belgium", "Bulgaria",
-                "Croatia", "Cyprus", "Czechia",
-                "Denmark", "Estonia", "Finland",
-                "France", "Germany", "Greece",
-                "Hungary", "Ireland", "Italy",
-                "Latvia", "Lithuania", "Luxembourg",
-                "Malta", "Netherlands", "Poland",
-                "Portugal", "Romania", "Slovakia",
-                "Slovenia", "Spain", "Sweden"
+        countryList = Arrays.asList(
+                new Country("Austria", "https://flagcdn.com/w320/at.png"),
+                new Country("Belgium", "https://flagcdn.com/w320/be.png"),
+                new Country("Bulgaria", "https://flagcdn.com/w320/bg.png"),
+                new Country("Croatia", "https://flagcdn.com/w320/hr.png"),
+                new Country("Cyprus", "https://flagcdn.com/w320/cy.png"),
+                new Country("Czechia", "https://flagcdn.com/w320/cz.png"),
+                new Country("Denmark", "https://flagcdn.com/w320/dk.png"),
+                new Country("Estonia", "https://flagcdn.com/w320/ee.png"),
+                new Country("Finland", "https://flagcdn.com/w320/fi.png"),
+                new Country("France", "https://flagcdn.com/w320/fr.png"),
+                new Country("Germany", "https://flagcdn.com/w320/de.png"),
+                new Country("Greece", "https://flagcdn.com/w320/gr.png"),
+                new Country("Hungary", "https://flagcdn.com/w320/hu.png"),
+                new Country("Ireland", "https://flagcdn.com/w320/ie.png"),
+                new Country("Italy", "https://flagcdn.com/w320/it.png"),
+                new Country("Latvia", "https://flagcdn.com/w320/lv.png"),
+                new Country("Lithuania", "https://flagcdn.com/w320/lt.png"),
+                new Country("Luxembourg", "https://flagcdn.com/w320/lu.png"),
+                new Country("Malta", "https://flagcdn.com/w320/mt.png"),
+                new Country("Netherlands", "https://flagcdn.com/w320/nl.png"),
+                new Country("Poland", "https://flagcdn.com/w320/pl.png"),
+                new Country("Portugal", "https://flagcdn.com/w320/pt.png"),
+                new Country("Romania", "https://flagcdn.com/w320/ro.png"),
+                new Country("Slovakia", "https://flagcdn.com/w320/sk.png"),
+                new Country("Slovenia", "https://flagcdn.com/w320/si.png"),
+                new Country("Spain", "https://flagcdn.com/w320/es.png"),
+                new Country("Sweden", "https://flagcdn.com/w320/se.png")
         );
 
-        // **CityAdapter ile bağlama**
-        CityAdapter cityAdapter = new CityAdapter(cityList, city -> {
-            Intent intent = new Intent(PhotosActivity.this, CityPhotoActivity.class);
-            intent.putExtra("city_name", city);
-            startActivity(intent);
-        });
 
-        recyclerViewCities.setLayoutManager(new GridLayoutManager(this, 3)); // 3 sütunlu düzen
-        recyclerViewCities.setAdapter(cityAdapter);
+        adapter = new CountryAdapter(this, countryList);
+        recyclerView.setAdapter(adapter);
 
-        // **Alt Navigasyon Butonları Çalışsın**
-        homeBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(PhotosActivity.this, MainActivity.class);
+        adapter.setOnItemClickListener(position -> {
+            String selectedCountry = countryList.get(position).getName();
+            Intent intent = new Intent(PhotosActivity.this, CountryPhotoActivity.class);
+            intent.putExtra("country", selectedCountry);
             startActivity(intent);
-            finish();
-        });
-
-        searchBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(PhotosActivity.this, SearchActivity.class);
-            startActivity(intent);
-            finish();
-        });
-
-        mapBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(PhotosActivity.this, MapActivity.class);
-            startActivity(intent);
-            finish();
-        });
-
-        profileBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(PhotosActivity.this, ProfileActivity.class);
-            startActivity(intent);
-            finish();
         });
     }
 }

@@ -12,5 +12,11 @@
     <color name="light_purple">#7E57C2</color>
     <color name="back_ground">#C8E6C9</color>
     <color name="button_purple">#C5CAE9</color>
+    <color name="purple_500">#6200EE</color>
+    <color name="light_pink">#DCEDC8</color>
+    <color name="dark_green_pressed">#009688</color>
+    <color name="mint_normal">#5AB5A3</color>
+    <color name="mint_pressed">#489c8d</color>
+    <color name="mint_teal">#5AB5A3</color>
 
 </resources>

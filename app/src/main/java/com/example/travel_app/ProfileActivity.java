@@ -7,40 +7,33 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ProfileActivity extends AppCompatActivity {
     private ImageView profileImage, homeBtn, searchBtn, mapBtn, profileBtn;
     private TextView profileName, profileEmail;
-    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        // **Butonları ve bileşenleri tanımla**
         initializeViews();
-
-        // **Kullanıcı verilerini yükle**
         loadUserData();
 
-        // **Profil ayarlarına git**
-        LinearLayout profileSection = findViewById(R.id.profileSection);
-        profileSection.setOnClickListener(v -> openActivity(ProfileEditActivity.class));
+        // Alt bölümler
+        findViewById(R.id.profileSection).setOnClickListener(v -> openActivity(ProfileEditActivity.class));
+        findViewById(R.id.favoritesSection).setOnClickListener(v -> openActivity(FavoritesActivity.class));
+        findViewById(R.id.myPhotosSection).setOnClickListener(v -> openActivity(PhotosActivity.class));
+        findViewById(R.id.travelMapSection).setOnClickListener(v -> openActivity(TravelMapActivity.class));
 
-        // **My Photos Sayfasına Git**
-        LinearLayout myPhotosSection = findViewById(R.id.myPhotosSection);
-        myPhotosSection.setOnClickListener(v -> openActivity(PhotosActivity.class));
-
-        // **Alt Navigasyon Butonlarını Ayarla**
         setupNavigation();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        // **Geri dönüldüğünde bilgileri güncelle**
         loadUserData();
     }
 
@@ -52,39 +45,41 @@ public class ProfileActivity extends AppCompatActivity {
         profileImage = findViewById(R.id.profileImage);
         profileName = findViewById(R.id.profileName);
         profileEmail = findViewById(R.id.profileEmail);
-        sharedPreferences = getSharedPreferences("UserProfile", Context.MODE_PRIVATE);
     }
 
     private void loadUserData() {
-        // **Kayıtlı kullanıcı bilgilerini al**
-        String firstName = sharedPreferences.getString("firstName", "").trim();
-        String lastName = sharedPreferences.getString("lastName", "").trim();
-        String email = sharedPreferences.getString("email", "").trim();
-        String selectedAvatar = sharedPreferences.getString("profileAvatar", "");
+        // Aktif kullanıcıyı öğren
+        SharedPreferences loginPrefs = getSharedPreferences("activeUser", Context.MODE_PRIVATE);
+        String activeEmail = loginPrefs.getString("email", null);
 
-        // **Eğer bilgiler eksikse varsayılan değer ata**
-        if (firstName.isEmpty()) firstName = "Adınız";
-        if (lastName.isEmpty()) lastName = "Soyadınız";
-        if (email.isEmpty()) email = "email@example.com";
+        if (activeEmail != null) {
+            SharedPreferences userPrefs = getSharedPreferences(activeEmail, Context.MODE_PRIVATE);
 
-        profileName.setText(firstName + " " + lastName);
-        profileEmail.setText(email);
+            String firstName = userPrefs.getString("firstName", "").trim();
+            String lastName = userPrefs.getString("lastName", "").trim();
+            String selectedAvatar = userPrefs.getString("profileAvatar", "female");
 
-        // **Kayıtlı avatarı yükle veya varsayılan atama yap**
-        if (selectedAvatar.isEmpty() || selectedAvatar.equals("female")) {
-            profileImage.setImageResource(R.drawable.avatar_female);
+            profileName.setText((firstName.isEmpty() ? "Adınız" : firstName) + " " +
+                    (lastName.isEmpty() ? "Soyadınız" : lastName));
+            profileEmail.setText(activeEmail);
+
+            if (selectedAvatar.equals("male")) {
+                profileImage.setImageResource(R.drawable.avatar_male);
+            } else {
+                profileImage.setImageResource(R.drawable.avatar_female);
+            }
         } else {
-            profileImage.setImageResource(R.drawable.avatar_male);
+            profileName.setText("Bilinmeyen Kullanıcı");
+            profileEmail.setText("email@example.com");
+            profileImage.setImageResource(R.drawable.avatar_female);
         }
     }
 
     private void setupNavigation() {
         homeBtn.setOnClickListener(v -> openActivity(MainActivity.class));
         searchBtn.setOnClickListener(v -> openActivity(SearchActivity.class));
-        mapBtn.setOnClickListener(v -> openActivity(MapActivity.class)); // **📍 Harita Sekmesi Aktif**
+        mapBtn.setOnClickListener(v -> openActivity(MapActivity.class));
         profileBtn.setOnClickListener(v -> openActivity(ProfileActivity.class));
-
-        // **Aktif butonu vurgula**
         highlightActiveButton();
     }
 
@@ -96,12 +91,19 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void openActivity(Class<?> destination) {
-        // **Eğer zaten aynı sayfada değilsek yönlendir**
         if (!this.getClass().equals(destination)) {
             Intent intent = new Intent(ProfileActivity.this, destination);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
-            finish(); // Önceki aktiviteyi kapat
+            finish();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+        super.onBackPressed();
     }
 }

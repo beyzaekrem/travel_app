@@ -2,14 +2,19 @@ package com.example.travel_app;
 
 public class Country {
     private String name;
+    private String flagUrl;
 
-    // Constructor (Yapıcı Metot)
-    public Country(String name) {
+    public Country(String name, String flagUrl) {
         this.name = name;
+        this.flagUrl = flagUrl;
     }
 
-    // Getter Metodu (Ülke adını almak için)
     public String getName() {
         return name;
     }
+
+    public String getFlagUrl() {
+        return flagUrl;
+    }
 }
+
