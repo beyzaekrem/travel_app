@@ -58,7 +58,7 @@ The goal of this project is to build a native Android travel app that demonstrat
 ---
 
 ## Repository Structure
-
+```
 travel_app/
 ├── .idea/ # IDE metadata
 ├── app/ # Android application module
@@ -71,7 +71,7 @@ travel_app/
 ├── gradlew # Gradle wrapper
 ├── gradlew.bat # Gradle wrapper (Windows)
 └── README.md # Documentation
-
+```
 
 ---
 
